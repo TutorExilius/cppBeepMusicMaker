@@ -4,23 +4,23 @@ using namespace BMM;
 #include <cmath>
 
 SpielEinheit::SpielEinheit( const Notenname &note )
-: note( note )
-, frequenz{ frequenzBerechnen() }
-, beepFrequenz{ static_cast<size_t>(std::round(this->frequenz)) }
+	: note( note )
+	, frequenz{ frequenzBerechnen() }
+	, beepFrequenz{ static_cast<size_t>( std::round( this->frequenz ) ) }
 {
 }
 
 const float SpielEinheit::frequenzBerechnen() const
 {
-	const int tastennummer = static_cast<int>(this->note);
-	const float frequenz = std::pow(std::pow(2, 1.0f / 12.0f), tastennummer - 49) * 440.0f;
+	const int tastennummer = static_cast<int>( this->note );
+	const float frequenz = std::pow( std::pow( 2, 1.0f / 12.0f ), tastennummer - 49 ) * 440.0f;
 
 	return frequenz;
 }
 
 Notenname SpielEinheit::getNotenname( const int tastennummer )
 {
-	switch (tastennummer)
+	switch( tastennummer )
 	{
 		case -8: return Notenname::C0;
 		case -7: return Notenname::Db0;

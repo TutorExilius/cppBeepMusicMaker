@@ -7,7 +7,7 @@ using namespace BMM;
 #include "spielEinheit.h"
 
 Note::Note( const Notenname &note )
-: SpielEinheit{ note }
+	: SpielEinheit{ note }
 {
 }
 

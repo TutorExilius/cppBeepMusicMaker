@@ -6,7 +6,7 @@ using namespace BMM;
 #include <Windows.h>
 
 Pause::Pause()
-: SpielEinheit{ Notenname::PAUSE }
+	: SpielEinheit{ Notenname::PAUSE }
 {
 }
 

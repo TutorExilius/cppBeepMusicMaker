@@ -3,7 +3,8 @@
 
 namespace BMM
 {
-	enum class Notenname {
+	enum class Notenname
+	{
 		PAUSE = -100,
 		C0 = -8,
 		Db0,

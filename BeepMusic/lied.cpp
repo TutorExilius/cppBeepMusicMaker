@@ -20,7 +20,7 @@ Lied::Lied( const std::string &filename )
 
 	if( !file )
 	{
-		exit(-1);
+		exit( -1 );
 	}
 
 	std::stringstream ss;
@@ -36,13 +36,13 @@ Lied::Lied( const std::string &filename )
 
 	std::getline( file, tmpStr, ':' );
 	std::getline( file, musikTitel );
-	trim(musikTitel);
+	trim( musikTitel );
 
 	this->titel = musikTitel;
 
 	std::getline( file, tmpStr, ':' );
-	std::getline( file, bmpStr);
-	trim(bmpStr);
+	std::getline( file, bmpStr );
+	trim( bmpStr );
 
 	/* Takt ist erstmal nicht nötig!
 	std::getline( file, tmpStr, ':' );
@@ -57,15 +57,15 @@ Lied::Lied( const std::string &filename )
 		if( noteStr.size() > 0 )
 		{
 			ss << noteStr;
-			std::getline(ss, tastennummerStr, ':');
+			std::getline( ss, tastennummerStr, ':' );
 			ss >> notenlaenge;
 			ss.clear();
 
 			SpielEinheit *spieleinheit = nullptr;
-			std::transform( tastennummerStr.begin(), tastennummerStr.end(), 
-				tastennummerStr.begin(), ::tolower );
-		
-			
+			std::transform( tastennummerStr.begin(), tastennummerStr.end(),
+							tastennummerStr.begin(), ::tolower );
+
+
 			if( tastennummerStr != "pause" )
 			{
 				int tastennummer = -9;
@@ -84,7 +84,7 @@ Lied::Lied( const std::string &filename )
 			}
 
 			ss << notenlaenge;
-			
+
 			float zaehler = 0.0f;
 			int nenner = 0;
 
@@ -102,10 +102,10 @@ Lied::Lied( const std::string &filename )
 			ss >> bmp;
 			ss.clear();
 
-			const float einVietelNotenLaenge = (60.0f / bmp);
-			const float notenlaenge = einVietelNotenLaenge * ((zaehler/nenner) / 0.25 ) ;
+			const float einVietelNotenLaenge = ( 60.0f / bmp );
+			const float notenlaenge = einVietelNotenLaenge * ( ( zaehler / nenner ) / 0.25 );
 
-			this->noten.push_back( std::make_pair(spieleinheit, notenlaenge) );
+			this->noten.push_back( std::make_pair( spieleinheit, notenlaenge ) );
 
 			ss.clear();
 		}
@@ -121,6 +121,6 @@ void Lied::play() const
 {
 	for( const auto &spielEinheit : this->noten )
 	{
-		spielEinheit.first->play(spielEinheit.second);
+		spielEinheit.first->play( spielEinheit.second );
 	}
 }
