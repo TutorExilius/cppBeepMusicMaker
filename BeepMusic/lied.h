@@ -16,10 +16,12 @@ namespace BMM
 		const std::string& getTitel() const;
 
 		void play() const;
+		void abbrechen() const;
 
 	private:
 		std::string titel;
 		std::vector<std::pair<SpielEinheit*, float>> noten;
+		mutable bool liedAbbrechen;
 	};
 }
 

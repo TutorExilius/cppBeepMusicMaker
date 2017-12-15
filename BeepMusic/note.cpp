@@ -15,6 +15,6 @@ void Note::play( const float &laenge ) const
 {
 	if( laenge > 0.0f )
 	{
-		Beep( this->beepFrequenz, this->basisLaenge * laenge );
+		Beep( static_cast<DWORD>( this->beepFrequenz ), static_cast<DWORD>( this->basisLaenge * laenge ) );
 	}
 }

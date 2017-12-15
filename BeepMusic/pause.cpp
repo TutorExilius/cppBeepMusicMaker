@@ -14,6 +14,6 @@ void Pause::play( const float &laenge ) const
 {
 	if( laenge > 0.0f )
 	{
-		Sleep( SpielEinheit::basisLaenge * laenge );
+		Sleep( static_cast<DWORD>( SpielEinheit::basisLaenge * laenge ) );
 	}
 }

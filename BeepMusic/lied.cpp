@@ -1,10 +1,11 @@
 #include "lied.h"
 
-#include <vector>
+#include <algorithm>
+#include <conio.h>
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <algorithm>
+#include <vector>
 
 #include "spielEinheit.h"
 #include "note.h"
@@ -15,8 +16,9 @@
 using namespace BMM;
 
 Lied::Lied( const std::string &filename )
+: liedAbbrechen{ false }
 {
-	std::ifstream file( filename, std::ios::in );
+	std::ifstream file( filename );
 
 	if( !file )
 	{
@@ -103,7 +105,7 @@ Lied::Lied( const std::string &filename )
 			ss.clear();
 
 			const float einVietelNotenLaenge = ( 60.0f / bmp );
-			const float notenlaenge = einVietelNotenLaenge * ( ( zaehler / nenner ) / 0.25 );
+			const float notenlaenge = einVietelNotenLaenge * ( ( zaehler / nenner ) / 0.25f );
 
 			this->noten.push_back( std::make_pair( spieleinheit, notenlaenge ) );
 
@@ -121,6 +123,23 @@ void Lied::play() const
 {
 	for( const auto &spielEinheit : this->noten )
 	{
+		if( kbhit() )
+		{
+			break;
+			this->liedAbbrechen = true;
+		}
+
+		if( this->liedAbbrechen )
+		{
+			this->liedAbbrechen = false;
+			break;
+		}
+
 		spielEinheit.first->play( spielEinheit.second );
 	}
+}
+
+void Lied::abbrechen() const
+{
+	this->liedAbbrechen = true;
 }

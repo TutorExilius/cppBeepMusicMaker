@@ -1,6 +1,7 @@
 #include "myFunctions.h"
 
 #include <cctype>
+#include <iostream>
 
 std::string &trim( std::string &str )
 {
@@ -21,3 +22,9 @@ std::string &trim( std::string &str )
 	return str;
 }
 
+void pausiereKonsole()
+{
+	std::cin.clear();
+	std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
+	std::cin.get(); // wait
+}
