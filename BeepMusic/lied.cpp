@@ -1,6 +1,7 @@
 #include "lied.h"
 
 #include <algorithm>
+#include <cctype>
 #include <conio.h>
 #include <fstream>
 #include <string>
@@ -16,11 +17,11 @@
 using namespace BMM;
 
 Lied::Lied( const std::string &filename )
-: liedAbbrechen{ false }
+	: liedAbbrechen{ false }
 {
-	std::ifstream file( filename );
+	std::ifstream file{ filename };
 
-	if( !file )
+	if( !file.good() )
 	{
 		exit( -1 );
 	}
@@ -30,7 +31,7 @@ Lied::Lied( const std::string &filename )
 
 	std::string noteStr;
 	std::string tastennummerStr;
-	std::string notenlaenge;
+	std::string notenlaengeStr;
 
 	std::string musikTitel;
 	std::string bmpStr;
@@ -52,7 +53,7 @@ Lied::Lied( const std::string &filename )
 	trim(takt);
 	**/
 
-	char tmp;
+	char tmp = ' ';
 
 	while( file >> noteStr )
 	{
@@ -60,13 +61,13 @@ Lied::Lied( const std::string &filename )
 		{
 			ss << noteStr;
 			std::getline( ss, tastennummerStr, ':' );
-			ss >> notenlaenge;
+			ss >> notenlaengeStr;
 			ss.clear();
 
 			SpielEinheit *spieleinheit = nullptr;
 			std::transform( tastennummerStr.begin(), tastennummerStr.end(),
-							tastennummerStr.begin(), ::tolower );
-
+							tastennummerStr.begin(),
+							[]( unsigned char c ) -> unsigned char{ return static_cast<unsigned char>( std::tolower( c ) ); } );
 
 			if( tastennummerStr != "pause" )
 			{
@@ -85,7 +86,7 @@ Lied::Lied( const std::string &filename )
 				spieleinheit = new Pause;
 			}
 
-			ss << notenlaenge;
+			ss << notenlaengeStr;
 
 			float zaehler = 0.0f;
 			int nenner = 0;
@@ -123,10 +124,10 @@ void Lied::play() const
 {
 	for( const auto &spielEinheit : this->noten )
 	{
-		if( kbhit() )
+		if( _kbhit() )
 		{
-			break;
 			this->liedAbbrechen = true;
+			break;
 		}
 
 		if( this->liedAbbrechen )

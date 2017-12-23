@@ -13,9 +13,9 @@ SpielEinheit::SpielEinheit( const Notenname &note )
 const float SpielEinheit::frequenzBerechnen() const
 {
 	const int tastennummer = static_cast<int>( this->note );
-	const float frequenz = static_cast<float>(std::pow( static_cast<float>(std::pow( 2, 1.0f / 12.0f )), tastennummer - 49 )) * 440.0f;
+	const float frequenzBerechnet = static_cast<float>(std::pow( static_cast<float>(std::pow( 2, 1.0f / 12.0f )), tastennummer - 49 )) * 440.0f;
 
-	return frequenz;
+	return frequenzBerechnet;
 }
 
 Notenname SpielEinheit::getNotenname( const int tastennummer )

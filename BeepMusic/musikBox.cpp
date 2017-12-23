@@ -7,10 +7,10 @@ using namespace BMM;
 MusikBox::MusikBox( const std::string &liederListe, const std::string &liederOrdner )
 	: musikAbbruch{ false }
 	, musikBoxAktiv{ true }
-	, sinlgeMode{ false }
+	, einmaligAbpsielen{ false }
 	, geradeAmAbpielen{ nullptr }
 {
-	std::ifstream inLieder( "lieder.txt", std::ios::in );
+	std::ifstream inLieder( liederListe, std::ios::in );
 
 	if( !inLieder )
 	{
@@ -30,7 +30,7 @@ MusikBox::MusikBox( const std::string &liederListe, const std::string &liederOrd
 MusikBox::MusikBox( const std::string &lied )
 	: musikAbbruch{ false }
 	, musikBoxAktiv{ true }
-	, sinlgeMode{ true }
+	, einmaligAbpsielen{ true }
 	, geradeAmAbpielen{ nullptr }
 {
 	this->lieder.push_back( Lied{ lied } );
@@ -38,14 +38,12 @@ MusikBox::MusikBox( const std::string &lied )
 
 void MusikBox::start()
 {
-	if( this->sinlgeMode )
+	if( this->einmaligAbpsielen )
 	{
 		this->lieder.at( 0 ).play();
 	}
 	else
 	{
-		int menuePunkt = 0;
-
 		do
 		{
 			this->menue();

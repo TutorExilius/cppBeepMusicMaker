@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+#include "argumentParser.h"
 #include "lied.h"
 
 namespace BMM
@@ -24,9 +25,10 @@ namespace BMM
 		void liedAbspielen( const int liedNummer ) const;
 		void menue();
 
+		ArgumentParser argumentParser;
 		bool musikAbbruch;
 		bool musikBoxAktiv;
-		bool sinlgeMode;
+		bool einmaligAbpsielen;
 		const std::string liederOrdner;
 
 		std::vector<Lied> lieder;

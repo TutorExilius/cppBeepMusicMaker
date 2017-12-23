@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 
+#include <cstddef>	// byte (C++ 17)
+
 #include "musikBox.h"
 using namespace BMM;
 
