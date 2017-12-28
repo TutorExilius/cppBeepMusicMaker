@@ -39,6 +39,9 @@
     <ClCompile Include="argumentParser.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="option.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="note.h">
@@ -60,6 +63,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="argumentParser.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="option.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

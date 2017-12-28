@@ -1,32 +1,30 @@
-#include <iostream>
-#include <string>
-
 #include <cstddef>	// byte (C++ 17)
 
+#include <iostream>
+#include <string>
+using std::string;
+
+#include <vector>
+using std::vector;
+
 #include "musikBox.h"
+#include "argumentParser.h"
 using namespace BMM;
+
 
 #include "myFunctions.h"
 
 int main( int argc, char **argv )
 {
-	if( argc > 1 )
-	{
-		const std::string liedPfad{ argv[1] };
+	vector<string> argumente;
+	vector<Option> optionen;
 
-		MusikBox musikBox{ liedPfad };
-		musikBox.start();
-	}
-	else
-	{
-		const std::string liederListe = "lieder.txt";
-		const std::string liederOrdner = "lieder";
+	ArgumentParser argumentParser{ argc, argv, optionen, argumente };
 
-		MusikBox musikBox{ liederListe, liederOrdner };
-		musikBox.start();
+	MusikBox musikBox{ optionen, argumente };
+	musikBox.start();
 
-		pausiereKonsole();
-	}
+	pausiereKonsole();
 	
 	return 0;
 }

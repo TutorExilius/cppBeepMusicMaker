@@ -4,6 +4,56 @@ using namespace BMM;
 #include <fstream>
 #include <iostream>
 
+#include "option.h"
+
+MusikBox::MusikBox( const std::vector<Option> &optionen,
+					const std::vector<std::string> &argumente )
+: musikAbbruch{ false }
+, musikBoxAktiv{ true }
+, einmaligAbpsielen{ false }
+, geradeAmAbpielen{ nullptr }
+{
+	std::string playlist;
+	std::string liederOrdner;
+
+	for( const auto &option : optionen )
+	{
+		if( option.getOptionName() == "-p" ||
+			option.getOptionName() == "--playlist" )
+		{
+			playlist = option.getArgument( 0 );
+		}
+		else if( option.getOptionName() == "-d" ||
+				 option.getOptionName() == "--dir" )
+		{
+			liederOrdner = option.getArgument( 0 );
+		}
+	}
+
+	if( playlist == "" || liederOrdner == "" )
+	{
+		std::cerr << "Failed reading Option-Arguments in MusikBox(..)";
+		return;
+	}
+
+	std::ifstream inLieder( playlist, std::ios::in );
+
+	if( !inLieder )
+	{
+		exit( -1 );
+	}
+
+	std::string zeile;
+	while( std::getline( inLieder, zeile ) )
+	{
+		if( zeile.size() > 0 )
+		{
+			this->lieder.push_back( Lied{ liederOrdner + "\\" + zeile + ".txt" } );
+		}
+	}
+}
+
+/*
 MusikBox::MusikBox( const std::string &liederListe, const std::string &liederOrdner )
 	: musikAbbruch{ false }
 	, musikBoxAktiv{ true }
@@ -27,6 +77,7 @@ MusikBox::MusikBox( const std::string &liederListe, const std::string &liederOrd
 	}
 }
 
+
 MusikBox::MusikBox( const std::string &lied )
 	: musikAbbruch{ false }
 	, musikBoxAktiv{ true }
@@ -35,6 +86,7 @@ MusikBox::MusikBox( const std::string &lied )
 {
 	this->lieder.push_back( Lied{ lied } );
 }
+*/
 
 void MusikBox::start()
 {

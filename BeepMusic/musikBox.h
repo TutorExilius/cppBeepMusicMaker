@@ -6,14 +6,17 @@
 
 #include "argumentParser.h"
 #include "lied.h"
+#include "option.h"
 
 namespace BMM
 {
 	class MusikBox
 	{
 	public:
-		MusikBox( const std::string &liederListe, const std::string &liederOrdner );
-		MusikBox( const std::string &lied );
+		MusikBox( const std::vector<Option> &optionen,
+				  const std::vector<std::string> &argumente );
+		// MusikBox( const std::string &liederListe, const std::string &liederOrdner );
+		// MusikBox( const std::string &lied );
 		void start();
 
 	private:
@@ -25,7 +28,6 @@ namespace BMM
 		void liedAbspielen( const int liedNummer ) const;
 		void menue();
 
-		ArgumentParser argumentParser;
 		bool musikAbbruch;
 		bool musikBoxAktiv;
 		bool einmaligAbpsielen;

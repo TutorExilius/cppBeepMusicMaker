@@ -153,6 +153,7 @@
     <ClCompile Include="musikBox.cpp" />
     <ClCompile Include="myFunctions.cpp" />
     <ClCompile Include="note.cpp" />
+    <ClCompile Include="option.cpp" />
     <ClCompile Include="pause.cpp" />
     <ClCompile Include="spielEinheit.cpp" />
   </ItemGroup>
@@ -162,6 +163,7 @@
     <ClInclude Include="musikBox.h" />
     <ClInclude Include="myFunctions.h" />
     <ClInclude Include="note.h" />
+    <ClInclude Include="option.h" />
     <ClInclude Include="pause.h" />
     <ClInclude Include="spielEinheit.h" />
   </ItemGroup>
