@@ -15,8 +15,6 @@ namespace BMM
 	public:
 		MusikBox( const std::vector<Option> &optionen,
 				  const std::vector<std::string> &argumente );
-		// MusikBox( const std::string &liederListe, const std::string &liederOrdner );
-		// MusikBox( const std::string &lied );
 		void start();
 
 	private:
@@ -27,13 +25,18 @@ namespace BMM
 		void menueFuehrung();
 		void liedAbspielen( const int liedNummer ) const;
 		void menue();
+		std::vector<std::string> getArguments( const std::string &optionName ) const;
 
 		bool musikAbbruch;
 		bool musikBoxAktiv;
-		bool einmaligAbpsielen;
-		const std::string liederOrdner;
+		bool playSingleSong;
+		std::string liederOrdner;
+		std::string singleFile;
 
 		std::vector<Lied> lieder;
+		std::vector<Option> optionen;
+		std::vector<std::string> argumente;
+
 		mutable Lied *geradeAmAbpielen;
 	};
 }

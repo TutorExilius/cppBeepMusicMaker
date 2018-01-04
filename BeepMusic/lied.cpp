@@ -4,6 +4,7 @@
 #include <cctype>
 #include <conio.h>
 #include <fstream>
+#include <iostream>
 #include <string>
 #include <sstream>
 #include <vector>
@@ -23,6 +24,7 @@ Lied::Lied( const std::string &filename )
 
 	if( !file.good() )
 	{
+		std::cerr << filename << " konnte nciht geoeffnet werden!" << std::endl;
 		exit( -1 );
 	}
 

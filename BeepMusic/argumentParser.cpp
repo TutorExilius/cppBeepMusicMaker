@@ -7,6 +7,8 @@ ArgumentParser::ArgumentParser( const int argc, char **argv,
 								std::vector<Option> &optionen,
 								std::vector<std::string> &argumente )
 {
+	// TODO: Doppelte Optionen und Argumente herausfiltern
+
 	// Definition unserer Optionen und Anzahl der zu erwartenden Aegumente
 	// File
 	this->optionenArgumente["-f"] = 1;
@@ -25,8 +27,6 @@ ArgumentParser::ArgumentParser( const int argc, char **argv,
 	if( argc > 1 )
 	{
 		Option *lastOption = nullptr;
-		size_t optionArgCounter = 0;
-
 		bool missingMinimumOptions = true;
 
 		for( int i = 1; i < argc; i++ )
@@ -56,8 +56,7 @@ ArgumentParser::ArgumentParser( const int argc, char **argv,
 				}
 				else
 				{
-					if( lastOption->getArgSize() <
-						this->optionenArgumente[lastOption->getOptionName()] )
+					if( lastOption->getArgSize() < this->optionenArgumente[lastOption->getOptionName()] )
 					{
 						lastOption->addArgument( argument );
 					}
@@ -71,19 +70,7 @@ ArgumentParser::ArgumentParser( const int argc, char **argv,
 
 		if( missingMinimumOptions )
 		{
-			/*
-			Option playlist{ "-p" };
-			playlist.addArgument( "lieder.txt" );
-
-			Option dir{ "-d" };
-			dir.addArgument( "lieder" );
-
-			optionen.push_back( playlist );
-			optionen.push_back( dir );
-			*/
-
 			this->defaultInitialisation( optionen, argumente );
-
 		}
 	}
 	else

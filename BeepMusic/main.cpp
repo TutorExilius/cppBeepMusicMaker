@@ -1,6 +1,5 @@
-#include <cstddef>	// byte (C++ 17)
-
 #include <iostream>
+
 #include <string>
 using std::string;
 
@@ -11,11 +10,12 @@ using std::vector;
 #include "argumentParser.h"
 using namespace BMM;
 
-
 #include "myFunctions.h"
 
 int main( int argc, char **argv )
 {
+	std::cin.get();
+
 	vector<string> argumente;
 	vector<Option> optionen;
 
@@ -24,7 +24,7 @@ int main( int argc, char **argv )
 	MusikBox musikBox{ optionen, argumente };
 	musikBox.start();
 
-	pausiereKonsole();
+	// pausiereKonsole();
 	
 	return 0;
 }
