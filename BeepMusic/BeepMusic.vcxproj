@@ -23,7 +23,7 @@
     <ProjectGuid>{9956CB32-93A6-49FA-A0D7-A6B21CFCFEBF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>BeepMusic</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
